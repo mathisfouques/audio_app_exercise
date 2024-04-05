@@ -22,7 +22,7 @@
 
 ## Etapes 
 
-### Build
+### 1. Build
 
 - lancer le script de génération Isar (dans scripts/gen.sh)
     - Si vous êtes sur Windows vous pouvez copier coller le contenu du .sh dans Powershell
@@ -30,7 +30,7 @@
 => Après ça, l'app devrait compiler. 
 
 
-### Fichiers 
+### 2. Fichiers 
 
 - Gérer l’ajout et affichage de fichiers 
 
@@ -38,21 +38,21 @@
 
 Vérifier qu’en relançant l’application le fichier existe toujours (voir commentaire sur _getAppFileDuplicate
 
-### Persistence 
+### 3. Persistence 
 
 - Utiliser la partie persistence pour sauvegarder les chemins des fichiers ajoutés 
 - Afficher au démarrage de l’app tout fichier sauvegardé (liste) 
 - (Conseil : ) Implémenter rapidement dans votre UI un bouton pour supprimer tous les fichiers du store pour aider au debug.
 - Sauvegarde des fichiers a chaque fois que l’on en ajoute (vérifier que le fichier n’est pas déjà présent) 
 
-### Audio (basique)
+### 4. Audio (basique)
 
 - Intégration dans un « AudioCubit » (/ou Bloc) de AudioService utilisant just_audio
 - Play/ Pause 
 - Resume 
 - Changement d’audio joué
 
-### Notion minimale de playlist + Player avec progress bar 
+### 5. Notion minimale de playlist + Player avec progress bar 
 
 - Faire en sorte que la musique suivante démarre lorsque l’actuelle se termine
 - Affichage d’un Player avec la durée de la musique en cours et une progress bar que l’on peut modifier (voir « Slider » dans la doc flutter) 
