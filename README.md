@@ -11,6 +11,8 @@
  - Changer la position sur le son en cours
  - Commencer un nouveau son lorsque l’actuel est terminé (loop) 
 
+ Voir Screen.png
+
  ## A disposition : 
 
 - Partie Fichiers 
