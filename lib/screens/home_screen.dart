@@ -11,6 +11,14 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Audio app'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: () {
+              context.read<FileCubit>().pickFiles();
+            },
+          ),
+        ],
       ),
       body: BlocBuilder<FileCubit, FileState>(
         builder: (context, state) {
@@ -25,20 +33,23 @@ class HomeScreen extends StatelessWidget {
             );
           }
 
-          if (state.status == FileStatus.picking) {
+          if (state.status.isLoading) {
             return const Center(
               child: CircularProgressIndicator(),
             );
           }
 
           if (state.status == FileStatus.idle) {
-            return ListView.builder(
-              itemCount: state.files.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(state.files[index].split('/').last),
-                );
-              },
+            return RefreshIndicator(
+              onRefresh: () => context.read<FileCubit>().retrieveSongs(),
+              child: ListView.builder(
+                itemCount: state.files.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(state.files[index].title),
+                  );
+                },
+              ),
             );
           }
 
