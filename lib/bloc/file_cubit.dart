@@ -22,29 +22,29 @@ enum FileStatus {
 class FileState extends Equatable {
   final FileStatus status;
   final Exception? error;
-  final List<Song> files;
+  final List<Song> songs;
 
   const FileState({
     required this.status,
     this.error,
-    this.files = const [],
+    this.songs = const [],
   });
 
   factory FileState.initial() => const FileState(status: FileStatus.initial);
 
   @override
-  List<Object?> get props => [status, error, files];
+  List<Object?> get props => [status, error, songs];
 
   //copyWith method
   FileState copyWith({
     FileStatus? status,
     Exception? error,
-    List<Song>? files,
+    List<Song>? songs,
   }) {
     return FileState(
       status: status ?? this.status,
       error: error ?? this.error,
-      files: files ?? this.files,
+      songs: songs ?? this.songs,
     );
   }
 }
@@ -60,9 +60,8 @@ class FileCubit extends Cubit<FileState> {
 
     emit(state.copyWith(status: FileStatus.pickingFromDevice));
 
-    final files = await fileService.pickAudioFiles();
-    final songs =
-        files.mapToList((e) => Song(path: e, title: e.split('/').last));
+    final filePaths = await fileService.pickAudioFiles();
+    final songs = filePaths.mapToList(Song.fromPath);
 
     emit(state.copyWith(status: FileStatus.persistingInStore));
 
@@ -70,7 +69,7 @@ class FileCubit extends Cubit<FileState> {
     if (successSaving) {
       emit(state.copyWith(
         status: FileStatus.idle,
-        files: songs,
+        songs: songs,
       ));
     }
   }
@@ -82,7 +81,7 @@ class FileCubit extends Cubit<FileState> {
 
     emit(state.copyWith(
       status: FileStatus.idle,
-      files: songs.mapToList((e) => e),
+      songs: songs,
     ));
   }
 }

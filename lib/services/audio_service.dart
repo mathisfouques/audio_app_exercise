@@ -32,7 +32,7 @@ class AudioServiceImpl implements AudioService {
     final itExists = await File(path).exists();
 
     Logger().i(itExists
-        ? "File exists ✅ Setting audio source to: $path, and playing..."
+        ? "File exists ✅ Setting audio source to: $path..."
         : "File does not exists...");
 
     if (itExists) {

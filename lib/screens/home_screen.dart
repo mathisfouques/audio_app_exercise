@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../bloc/audio_cubit.dart';
 import '../bloc/file_cubit.dart';
+import '../main.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -43,10 +45,13 @@ class HomeScreen extends StatelessWidget {
             return RefreshIndicator(
               onRefresh: () => context.read<FileCubit>().retrieveSongs(),
               child: ListView.builder(
-                itemCount: state.files.length,
+                itemCount: state.songs.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text(state.files[index].title),
+                    title: Text(state.songs[index].title),
+                    onTap: () => context.read<AudioCubit>().tappedOnSong(
+                          state.songs[index],
+                        ),
                   );
                 },
               ),

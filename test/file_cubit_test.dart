@@ -26,7 +26,7 @@ void main() {
         act: (cubit) => cubit.pickFiles(),
         expect: () => <FileState>[
           const FileState(status: FileStatus.picking),
-          const FileState(status: FileStatus.idle, files: files),
+          const FileState(status: FileStatus.idle, songs: files),
         ],
       );
     },
