@@ -1,0 +1,34 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "audio_app_exercise",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "audio_app_exercise (profile mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "audio_app_exercise (release mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    // Add a debug config for chrome, with the device set tochrome
+    {
+      "name": "audio_app_exercise (chrome)",
+      "request": "launch",
+      "type": "dart",
+      "args": ["--web-port", "7357"]
+      // "webRenderer": "html",
+      // "device": "chrome"
+    }
+  ]
+}

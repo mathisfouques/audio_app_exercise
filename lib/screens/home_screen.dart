@@ -1,9 +1,10 @@
+import 'package:audio_app_exercise/services/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../bloc/audio_cubit.dart';
 import '../bloc/file_cubit.dart';
-import '../main.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -49,9 +50,11 @@ class HomeScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return ListTile(
                     title: Text(state.songs[index].title),
-                    onTap: () => context.read<AudioCubit>().tappedOnSong(
-                          state.songs[index],
-                        ),
+                    onTap: () {
+                      context
+                          .read<AudioCubit>()
+                          .tappedOnSong(state.songs[index]);
+                    },
                   );
                 },
               ),

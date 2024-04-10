@@ -8,29 +8,27 @@ import '../models/song.dart';
 import '../services/audio_service.dart';
 
 class AudioState extends Equatable {
-  final bool isPlaying;
   final Song? currentSong;
   final AudioStatus status;
 
   const AudioState({
-    required this.isPlaying,
     this.currentSong,
     this.status = AudioStatus.idle,
   });
 
   factory AudioState.initial() => const AudioState(
-      isPlaying: false, status: AudioStatus.idle, currentSong: null);
+        status: AudioStatus.idle,
+        currentSong: null,
+      );
 
   @override
-  List<Object?> get props => [isPlaying, currentSong, status];
+  List<Object?> get props => [currentSong, status];
 
   AudioState copyWith({
-    bool? isPlaying,
     Song? currentSong,
     AudioStatus? status,
   }) {
     return AudioState(
-      isPlaying: isPlaying ?? this.isPlaying,
       currentSong: currentSong ?? this.currentSong,
       status: status ?? this.status,
     );
@@ -69,6 +67,8 @@ class AudioCubit extends Cubit<AudioState> {
     //   _play(state.currentPlaylist[nextIndex]);
     // }
 
+    print("Status changed to: $status");
+
     emit(state.copyWith(status: status));
   }
 
@@ -77,6 +77,7 @@ class AudioCubit extends Cubit<AudioState> {
       if (state.status == AudioStatus.running) {
         await pause();
       } else {
+        // AudioStatus.completed à gérer.
         await resume();
       }
     } else {
@@ -89,23 +90,24 @@ class AudioCubit extends Cubit<AudioState> {
     await audioService.setSingleAudioFile(song.path);
 
     emit(state.copyWith(
-        // index: state.currentPlaylist.indexWhere((element) => element == song),
-        // currentSongDuration: duration,
-        currentSong: song,
-        isPlaying: true
-        // changingPosition: null,
-        ));
+      // index: state.currentPlaylist.indexWhere((element) => element == song),
+      // currentSongDuration: duration,
+      currentSong: song,
+      // changingPosition: null,
+    ));
 
     audioService.play();
   }
 
   Future<void> pause() async {
     if (state.status != AudioStatus.running) return;
+    print("Pause");
     audioService.pause();
   }
 
   Future<void> resume() async {
     if (state.status != AudioStatus.paused) return;
+    print("Resume");
     audioService.resume();
   }
 }

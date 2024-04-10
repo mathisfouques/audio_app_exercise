@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 import '../extension_util.dart';
-import '../services/file_service.dart';
+import '../services/file_service_io_implementation.dart';
 
 class Song extends Equatable {
   final String path;

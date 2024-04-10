@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # of the product and file versions while build-number is used as the build suffix.
 version: 1.0.0+1
 
-isar_version: ^3.1.0+1
+isar_version: ^2.5.0
 
 environment:
   sdk: '>=3.3.0 <4.0.0'
@@ -40,6 +40,8 @@ dependencies:
   just_audio_background: any
     # path: ../cloned/just_audio/just_audio_background
 
+  logger: any
+  shared_preferences: ^2.2.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -47,7 +49,6 @@ dev_dependencies:
   flutter_lints: ^3.0.0
   isar_generator: ^3.1.0+1
   build_runner: ^2.4.8
-  logger: ^2.2.0
   bloc_test: ^9.1.7
 
 flutter:
