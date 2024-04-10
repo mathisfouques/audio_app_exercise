@@ -1,4 +1,4 @@
-import 'package:audio_app_exercise/bloc/file_cubit.dart';
+import 'package:audio_app_exercise/bloc/file/file_cubit.dart';
 import 'package:audio_app_exercise/services/file_service.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -22,7 +22,7 @@ void main() {
 
       blocTest<FileCubit, FileState>(
         'Given initial emits [MyState] when pickFiles is called.',
-        build: () => FileCubit(fileService),
+        build: () => FileCubit(fileService: const FileServiceImpl(), store: ),
         act: (cubit) => cubit.pickFiles(),
         expect: () => <FileState>[
           const FileState(status: FileStatus.picking),

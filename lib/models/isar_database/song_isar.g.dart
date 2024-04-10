@@ -15,7 +15,7 @@ extension GetSongIsarCollection on Isar {
 
 const SongIsarSchema = CollectionSchema(
   name: r'SongIsar',
-  id: 1716906397579941208,
+  id: 23,
   properties: {
     r'artist': PropertySchema(
       id: 0,

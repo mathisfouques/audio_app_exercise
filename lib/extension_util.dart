@@ -5,8 +5,7 @@ typedef FutureVoidCallback = FutureOr<void> Function();
 extension IterableExtension<T> on Iterable<T> {
   bool doesNotContain(T element) => !contains(element);
 
-  List<E> mapToList<E>(E Function(T element) convert) =>
-      map(convert).toList(); // Iterable : Map, Set, List.
+  List<E> mapToList<E>(E Function(T element) convert) => map(convert).toList();
 
   List<T> whereToList(bool Function(T element) test) => where(test).toList();
 }
